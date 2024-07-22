@@ -1,0 +1,59 @@
+Tipos de instruções: 
+
+	* Instruções básicas (OK)
+		- mov (atribuição imediata)
+		- movs (atribuição imediata - com sinal)
+		- add (adição com registradores)
+		- sub (subtração com registradores)
+		- cmp (comparação com registradores)
+	
+	* Instrucoes especificas (000100)
+		- mul (multiplicação com registradores) - Resolver a impressão
+		- muls (multiplicação com registradores - com sinal) - Resolver a impressão
+		- sll (deslocamento para esquerda) - Resolver a impressão
+		- sla (deslocamento para esquerda - aritmético com sinal) - Resolver a lógica e a impressão
+		- div (divisão com registradores) - OK
+		- divs (divisão com registradores - com sinal) - Fazer os ajustes por ser com sinal
+		- srl (deslocamento para direita) - OK
+		- sra (deslocamento para direta - aritmético com sinal) - Fazer os ajustes por ser com sinal
+	
+	* Instruções bit a bit (OK)
+		- and
+		- or
+		- not
+		- xor
+	
+	* Instruções imediatas
+		- addi (adição imediata) - Resolver as condições de setar e limpar SR (problema com o bit 32)
+		- subi (subtração imediata) - Resolver as condições de setar e limpar SR (problema com o bit 32)
+		- muli (multiplicação imediata) - Fazer os ajustes por ser com sinal
+		- divi (divisão imediata) - Fazer os ajustes por ser com sinal
+		- modi (resto imediato) - Fazer os ajustes por ser com sinal
+		- cmpi (comparação imediata) - OK
+	
+	* Instruções de leitura/escrita da memória
+		- l8 (leitura de 8 bits) - OK
+		- l16 (leitura de 16 bits) - Implementar
+		- l32 (leitura de 32 bits) - Implementar
+		- s8 (escrita de 8 bits) - Implementar
+		- s16 (escrita de 16 bits) - Implementar
+		- s32 (escrita de 32 bits) - Implementar
+	
+	* Instruções de controle de fluxo
+		-> Desvios condicionais
+			- bae - Verificar as instruções para setar
+			- bat - Verificar as instruções para setar
+			- bbe - Verificar as instruções para setar
+			- bbt - Verificar as instruções para setar
+			- beq - Verificar as instruções para setar
+			- bge - Verificar as instruções para setar
+			- bgt - Verificar as instruções para setar
+			- biv - Verificar as instruções para setar
+			- ble - Verificar as instruções para setar
+			- blt - Verificar as instruções para setar
+			- bne - Verificar as instruções para setar
+			- bni - Verificar as instruções para setar
+			- bnz - Verificar as instruções para setar
+			- bzd - Verificar as instruções para setar
+		-> Desvio incondicional
+			- bun

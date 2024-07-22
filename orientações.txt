@@ -1,0 +1,61 @@
+Orientações
+	O programa começa em PC (1) 
+
+	A primeira instrução que está no arquivo 1_erro.hex = 0xDC000007
+	1º passo: Converter o endereço da primeira instrução para binário (0xDC000007 para binário - Vai gerar 32 bits binários: 110111...00000111)
+	Primeiro passo após ler a memória: Decodificar a instrução (são os 6 bits mais significativos da instrução (0xDC000007))
+	Segunto passo: Separar a instrução dos parâmetros
+	Terceito: 
+
+	Instrução BUN:
+	pc = pc + 4 + [(int32) (im26) << 2] (o i26 converte em valor com sinal) =>
+	=> pc + 4 + 28 = PC + 32 = 0x20 => BUN 7 (Multiplica por 4, pois cada instrução tem 4 bytes)
+
+	Resumo: 
+	Hex = conteúdo da memória
+	A memória é um vetor de 32 bytes (cada posição pode ter 4 bytes)
+	Ler o arquivo HEX, colocar na memória que é um vetor de 32Kb (criar um função que le o conteúdo do arquivo e coloca na memória)
+	Depois, criar 32 registradores inicializados com 0
+	Buscar 
+	0. Lê a memória, pega o 0 que é a primeira instrução
+	1. Pega a instrução em hexa
+	2. Converte em binário
+	3. Decodifica separando a instrução dos operandos
+	4. Identifica qual a instrução que tem o código correspondente
+
+	Exemplo da linha 8 do erro.hex: Mov R1, 2
+	Obs.: 2 pontos = concatenado
+	O 11 é pra completar para ser 32 bits
+
+	-> cada instrução ocupa 4 bytes
+
+	Exemplo instrução (10 do arquivo erro): 0x54410000
+	Convertendo para binário = 01010100010000010000...0000
+	Código de instrução 010101 = operação divi (divisão imediata)
+	Sobram 16 bits (do 0 ao 15).
+
+	R[z] = R[x] / (int32)(iM16)
+	Pega o valor de 16 bits, faz o cache de 32 bits (converte completando até virar 32 bits), pega o valor imediato, divide o R[x] pelo valor e atribui o valor da divisão ao registrador de índice Z.
+
+	0x54410000 = R2 = R1 / 0 
+	SR = 0x20 (ZD = 100000)
+
+Dúvidas:
+
+-> Questionar no slide 44, se para comparar R[z] 63-32, precisamos fazer um cast e analisar virando 64 bits?
+
+-> Sugestão sobre R[l]: Na notação, não usar R[l 4-0], e deixar apenas R[l]
+
+-> Dúvida sobre a formatação da instrução mul: 
+	Com a concatenação dos registradores, criei uma nova variável que tem 64 bits. Mas na hora de imprimir, dá erro.
+
+	R0:R5=R4*R3=0x0000000023F4F31C
+	É necessário usar uma outra biblioteca?
+
+-> Dúvida sobre a formatação da instrução sll e sla:     				
+	sll r6,r5,r5,0: Quem é 0?
+	sla r8,r7,r7,1: Quem é 1?
+
+-> (slide 56) Como interpretar essa condição: A ≥ B → A − B ≥ 0 ≡ AE ← CY = 0 
+
+-> Por que nas instruções de controle de fluxo, usa dois fprintf?
